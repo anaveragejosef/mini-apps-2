@@ -6,7 +6,17 @@ const App = (props) => {
   const [chartRef, setRef] = useState(React.createRef());
 
   useEffect (() => {
-    axios.get('http://localhost:3000/api/historical-data')
+    fetchHistData();
+  }, []);
+
+  const fetchHistData = (currency = 'EUR', start = '2020-01-01', end = '2020-07-29') => {
+    axios.get('http://localhost:3000/api/historical-data', {
+      params: {
+        currency: currency,
+        start: start,
+        end: end
+      }
+    })
       .then(response => {
         let dates = Object.keys(response.data);
         let prices = dates.map(date => Number(response.data[date].toFixed(2)));
@@ -61,7 +71,7 @@ const App = (props) => {
         });
       })
       .catch(error => `Error getting hisorical data ${error}`);
-  });
+  }
 
   return (
     <div>
