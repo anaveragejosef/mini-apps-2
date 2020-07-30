@@ -47,6 +47,15 @@ class App extends React.Component {
       return (
         <div>
           {this.state.searchResults.map((record, index) => <DisplayResult record={record} key={index} />)}
+          <ReactPaginate
+            previousLabel={'Previous'}
+            nextLabel={'Next'}
+            breakLabel={'...'}
+            pageCount={this.state.pageCount}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={this.handlePageClick}
+          />
         </div>
       );
     }
@@ -60,15 +69,6 @@ class App extends React.Component {
         </div>
         <div>
           {this.searchResultsRender()}
-          <ReactPaginate
-            previousLabel={'Previous'}
-            nextLabel={'Next'}
-            breakLabel={'...'}
-            pageCount={this.state.pageCount}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
-            onPageChange={this.handlePageClick}
-          />
         </div>
       </div>
     );
