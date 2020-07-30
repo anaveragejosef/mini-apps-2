@@ -18,9 +18,45 @@ const App = (props) => {
             datasets: [
               {
                 label: "BTC Closing Price (EUR)",
-                data: prices
+                data: prices,
+                backgroundColor: [
+                  '#a8dadc'
+                ],
+                borderColor: [
+                  '#1d3557'
+                ]
               }
             ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              xAxes: [{
+                gridLines: {
+                  drawOnChartArea: false,
+                  drawBorder: true
+                }
+              }],
+              yAxes: [{
+                gridLines: {
+                  drawOnChartArea: false,
+                  drawBorder: true
+                }
+              }]
+            },
+            tooltips: {
+              displayColors: false,
+              titleFontSize: 16,
+              bodyFontSize: 14,
+              xPadding: 10,
+              yPadding: 10,
+              callbacks: {
+                label: (tooltipItem, data) => {
+                  return `${tooltipItem.value}€`
+                }
+              }
+            }
           }
         });
       })
